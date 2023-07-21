@@ -2,43 +2,22 @@ package org.guilherme;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.guilherme.adapter.in.KafkaInput;
+import org.guilherme.model.Customer;
 
-import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
 import static org.guilherme.adapter.config.KafkaProducerConfig.properties;
-import static org.guilherme.adapter.in.KafkaInput.compras;
 
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        var producer = new KafkaProducer<String, String>(properties());
+        Customer msgProd = Customer.builder().name("asdasdasda").cpf("1.0").build();
+
+        KafkaProducer<String, Customer> producer = properties();
         var topic = "typeOfMessageTransitsHere";
-        for (String message : compras()) {
-            var key = UUID.randomUUID().toString();
-            var record = new ProducerRecord<String, String>(topic, key, message);
-            producer.send(record).get();
-        }
+        producer.send(new ProducerRecord<String, Customer>(topic, "1", msgProd));
+        System.out.println("Message sent " + msgProd.getCpf() +"    "+ msgProd.getName());
+        producer.close();
         producer.flush();
     }
-
-    public static List<String> messageValue() {
-        return List.of(
-                "asdasgggggggg",
-                "asasdsad",
-                "kopkpokpok",
-                "aaaaa",
-                "fffffffff",
-                "jhujuuju",
-                "klliolkilkilki",
-                "kikikikikik",
-                "kikizssdsd",
-                "czczczczc",
-                "rurururur.rar",
-                "oaksdpoaskpdoako.exec"
-        );
-    }
-
 }
