@@ -1,6 +1,5 @@
 package org.guilherme.adapter.in;
 
-import org.guilherme.model.Customer;
 import org.guilherme.serializer.CustomSerializer;
 
 import java.util.ArrayList;
@@ -12,5 +11,4 @@ public class KafkaInput {
         return new ArrayList<>();
 
     }
-
 }

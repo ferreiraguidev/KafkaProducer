@@ -1,12 +1,11 @@
 package org.guilherme.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 
 import java.io.Serializable;
 
 
-@Builder
+
 public class Customer implements Serializable {
 
     @JsonProperty
