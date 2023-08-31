@@ -11,7 +11,7 @@ import static org.guilherme.adapter.config.KafkaProducerConfig.properties;
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-        Customer msgProd = new  Customer("10125556289", "Guilherme");
+        var msgProd = new  Customer("10125556289", "Guilherme");
 
         KafkaProducer<String, Customer> producer = properties();
         var topic = "typeOfMessageTransitsHere";
@@ -19,5 +19,6 @@ public class Main {
         System.out.println("Message sent " + msgProd.getCpf() +"    "+ msgProd.getName());
         producer.close();
 //        producer.flush();
+
     }
 }
